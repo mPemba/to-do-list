@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { TaskContext } from "../lib/TaskContext";
 import { NewTaskForm } from "./newTaskForm";
+import { colors } from "../lib/colors";
 
 const TaskList = () => {
   const { tasks, showTaskForm } = React.useContext(TaskContext);
@@ -31,7 +32,7 @@ const TasksContainer = styled.div`
 `;
 
 const Tasks = styled.div`
-  width: 60%;
+  width: 70%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -48,20 +49,23 @@ const Task = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: #f5f5f5;
+  background-color: ${colors.darkBlue};
+  border: 2px solid ${colors.blue};
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
+  box-shadow: 0 6px 10px ${colors.lightGray};
 `;
 
 const Title = styled.div`
-  font-size: 1.5rem;
   font-weight: bold;
+  color: ${colors.white};
   margin-bottom: 0.5rem;
 `;
 
 const Description = styled.div`
   font-size: 1rem;
+  color: ${colors.lightBlue};
 `;
 
 export { TaskList };

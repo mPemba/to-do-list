@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { colors } from "../lib/colors";
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <h1>To Do List</h1>
+      <Heading>To Do List</Heading>
       <Switcher>
         <div>Active</div>
         <div>Completed</div>
@@ -15,13 +16,17 @@ const Header = () => {
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 14%;
-  background-color: #f5f5f5;
+  height: 11%;
+  background-color: ${colors.darkBlue};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 2px solid ${colors.blue};
+`;
+
+const Heading = styled.h1`
+  color: ${colors.white};
 `;
 
 const Switcher = styled.div`
@@ -30,6 +35,7 @@ const Switcher = styled.div`
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+  color: ${colors.white};
 `;
 
 export { Header };

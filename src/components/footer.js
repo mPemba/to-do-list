@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { TaskContext } from "../lib/TaskContext";
+import { colors } from "../lib/colors";
 
 const Footer = () => {
   const { tasks, setAddTaskForm } = React.useContext(TaskContext);
@@ -19,12 +20,12 @@ const Footer = () => {
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 100px;
-  background-color: #f5f5f5;
+  height: 80px;
+  background-color: ${colors.darkBlue};
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid #e0e0e0;
+  border-top: 2px solid ${colors.blue};
   padding: 0 2rem;
   position: fixed;
   bottom: 0;
@@ -34,7 +35,7 @@ const FooterContent = styled.div`
   width: fit-content;
   height: fit-content;
   font-size: 1rem;
-  color: #757575;
+  color: ${colors.white};
   cursor: pointer;
 `;
 

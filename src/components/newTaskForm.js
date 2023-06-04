@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { TaskContext } from "../lib/TaskContext";
 import { createTask } from "../lib/service";
+import { colors } from "../lib/colors";
 
 const NewTaskForm = () => {
   const [title, setTitle] = useState("");
@@ -57,7 +58,7 @@ const Task = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  background-color: #f5f5f5;
+  background-color: ${colors.lightGray};
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -72,7 +73,7 @@ const TextInput = styled.input`
   width: 100%;
   height: 2rem;
   border: ${(props) =>
-    props.errorState ? "1px solid red" : "1px solid #bdbdbd"}};
+    props.errorState ? `1px solid ${colors.red}` : `1px solid ${colors.black}`};
   border-radius: 0.5rem;
   padding: 0.5rem;
   margin-bottom: 0.5rem;

@@ -10,12 +10,7 @@ export const TaskProvider = ({ children }) => {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [errorState, setErrorState] = useState(false);
 
-  // Define the function to update tasks
-  // const updateTasks = (updatedTasks) => {
-  //   setTasks(updatedTasks);
-  // };
-
-  // Pass the tasks and updateTasks function to the context value
+  // Make the context object
   const contextValue = {
     tasks,
     setTasks,
