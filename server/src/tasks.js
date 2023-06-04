@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const router = express.Router();
 
-// Define the '/tasks' endpoint
+// Get all tasks
 router.get("/tasks", (req, res) => {
   const tasksRef = firestore.collection("tasks");
 
@@ -21,7 +21,7 @@ router.get("/tasks", (req, res) => {
     });
 });
 
-// Define the '/createTask' endpoint
+// Create a new task
 router.post("/createTask", async (req, res) => {
   try {
     const { title, status, description } = req.body;
@@ -49,6 +49,33 @@ router.post("/createTask", async (req, res) => {
   } catch (error) {
     console.error("Error creating task:", error);
     res.status(500).json({ success: false, error: "Failed to create task" });
+  }
+});
+
+// Update a task
+router.put("/updateTask/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, description, status } = req.body;
+
+    // Get the current timestamp
+    const timestamp = Date.now();
+
+    // Create a new task object
+    const task = {
+      title,
+      description,
+      status,
+      updatedAt: timestamp,
+    };
+
+    // Save the task to Firestore
+    await firestore.collection("tasks").doc(id).update(task);
+
+    res.status(200).json({ success: true, task });
+  } catch (error) {
+    console.error("Error updating task:", error);
+    res.status(500).json({ success: false, error: "Failed to update task" });
   }
 });
 

@@ -1,17 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { TaskContext } from "../lib/TaskContext";
 import { colors } from "../lib/colors";
 
 const Footer = () => {
-  const { tasks, setAddTaskForm } = React.useContext(TaskContext);
+  const { tasks, setShowTaskForm } = useContext(TaskContext);
 
   return (
     <FooterContainer>
       <FooterContent>
         {tasks.length} Task{tasks.length !== 1 && "s"}
       </FooterContent>
-      <FooterContent onClick={() => setAddTaskForm(true)}>
+      <FooterContent onClick={() => setShowTaskForm(true)}>
         Add New Task +
       </FooterContent>
     </FooterContainer>

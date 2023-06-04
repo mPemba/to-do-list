@@ -41,4 +41,28 @@ const createTask = async ({ title, description }) => {
   }
 };
 
-export { fetchTasks, createTask };
+const updateTask = async ({ id, title, description, status }) => {
+  try {
+    const response = await fetch(`http://localhost:5000/updateTask/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: title,
+        description: description,
+        status: status,
+      }),
+    });
+    if (response.ok) {
+      const taskData = await response.json();
+      return taskData;
+    } else {
+      console.error("Failed to update task: ", response.status);
+    }
+  } catch (error) {
+    console.error("Error updating task: ", error);
+  }
+};
+
+export { fetchTasks, createTask, updateTask };

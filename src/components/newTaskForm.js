@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { TaskContext } from "../lib/TaskContext";
 import { createTask } from "../lib/service";
@@ -8,7 +8,7 @@ const NewTaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const { tasks, setTasks, setShowTaskForm, errorState } =
-    React.useContext(TaskContext);
+    useContext(TaskContext);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);

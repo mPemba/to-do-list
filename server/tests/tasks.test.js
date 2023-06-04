@@ -15,12 +15,27 @@ jest.mock("../src/db.js", () => ({
     collection: jest.fn().mockReturnValue({
       get: jest.fn().mockResolvedValue({
         docs: [
-          { id: "task1", data: () => ({ title: "Task 1" }) },
-          { id: "task2", data: () => ({ title: "Task 2" }) },
+          {
+            id: "task1",
+            data: () => ({
+              title: "Task 1",
+              description: "Task 1 Description",
+              status: "active",
+            }),
+          },
+          {
+            id: "task2",
+            data: () => ({
+              title: "Task 2",
+              description: "Task 2 Description",
+              status: "active",
+            }),
+          },
         ],
       }),
       set: jest.fn(),
       doc: jest.fn().mockReturnThis(),
+      update: jest.fn(),
     }),
   },
 }));
@@ -30,16 +45,28 @@ describe("Tasks API", () => {
     jest.clearAllMocks();
   });
 
+  // Test the GET /api/tasks endpoint
   it("should get a list of tasks", async () => {
     const response = await request(app).get("/api/tasks");
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual([
-      { id: "task1", title: "Task 1" },
-      { id: "task2", title: "Task 2" },
+      {
+        id: "task1",
+        title: "Task 1",
+        description: "Task 1 Description",
+        status: "active",
+      },
+      {
+        id: "task2",
+        title: "Task 2",
+        description: "Task 2 Description",
+        status: "active",
+      },
     ]);
   });
 
+  // Test the POST /api/createTask endpoint
   it("should create a new task", async () => {
     // Mock request body
     const taskData = {
@@ -69,6 +96,39 @@ describe("Tasks API", () => {
         description: taskData.description,
         status: taskData.status,
         createdAt: mockTimestamp,
+        updatedAt: mockTimestamp,
+      },
+    });
+  });
+
+  // Test the PUT /api/updateTask/:id endpoint
+  it("should update a tasks status", async () => {
+    const mockUUID = "task1";
+
+    // Mock request body
+    const taskData = {
+      title: "Task 1",
+      description: "Task 1 Description",
+      status: "completed",
+    };
+
+    // Mock Timestamp
+    const mockTimestamp = 1622707200;
+    jest.spyOn(Date, "now").mockImplementation(() => mockTimestamp);
+
+    // Make request
+    const response = await request(app)
+      .put(`/api/updateTask/${mockUUID}`)
+      .send(taskData);
+
+    // Verify response
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      success: true,
+      task: {
+        title: taskData.title,
+        description: taskData.description,
+        status: taskData.status,
         updatedAt: mockTimestamp,
       },
     });
