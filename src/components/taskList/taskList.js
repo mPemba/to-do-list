@@ -51,6 +51,11 @@ const TaskList = () => {
                         {task.description}
                       </Description>
                     )}
+                    {task.createdAt && (
+                      <CreatedAt>
+                        {new Date(task.createdAt).toLocaleDateString()}
+                      </CreatedAt>
+                    )}
                   </TaskDetails>
                   <TaskMenu task={task} index={index} />
                 </Task>
@@ -135,6 +140,12 @@ const EmptyState = styled.div`
   transition: width 0.8s ease-in-out;
   color: ${colors.darkBlue};
   gap: 1rem;
+`;
+
+const CreatedAt = styled.span`
+  font-size: 12px;
+  color: ${colors.blue};
+  margin-top: 3px;
 `;
 
 export { TaskList };
