@@ -23,7 +23,6 @@ const TaskList = () => {
 
   return (
     <TasksContainer>
-      {/* TODO - style this message */}
       {tasksToDisplay.length === 0 && showCompleted === false && (
         <EmptyState>
           <h2>Nothing to do!</h2>
