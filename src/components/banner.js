@@ -17,8 +17,8 @@ const Banner = () => {
   }, [setShowBanner]);
 
   return (
-    <BannerContainer type={showBanner.type}>
-      <BannerText>{showBanner.message}</BannerText>
+    <BannerContainer data-cy="banner-container" type={showBanner.type}>
+      <BannerText data-cy="banner-message">{showBanner.message}</BannerText>
     </BannerContainer>
   );
 };

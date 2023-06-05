@@ -15,9 +15,9 @@ const Header = () => {
   return (
     <HeaderContainer>
       <span>
-        <Heading>To Do List</Heading>
+        <Heading data-cy="to-do-list-heading-main">To Do List</Heading>
         {tasks.length > 0 && (
-          <Count>
+          <Count data-cy="to-do-list-header-count">
             {tasks.length} Task{tasks.length !== 1 && "s"}
           </Count>
         )}
@@ -26,12 +26,14 @@ const Header = () => {
         <DisplaySwitch
           highlight={showCompleted === false ? true : false}
           onClick={() => handleClick(false)}
+          data-cy="to-do-list-header-active-link"
         >
           Active
         </DisplaySwitch>
         <DisplaySwitch
           highlight={showCompleted === true ? true : false}
           onClick={() => handleClick(true)}
+          data-cy="to-do-list-header-completed-link"
         >
           Completed
         </DisplaySwitch>

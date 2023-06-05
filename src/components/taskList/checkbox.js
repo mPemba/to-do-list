@@ -4,7 +4,7 @@ import { colors } from "../../lib/colors";
 import { TaskContext } from "../../lib/TaskContext";
 import { updateTask } from "../../lib/service";
 
-const Checkbox = ({ task }) => {
+const Checkbox = ({ task, index }) => {
   const { tasks, setTasks, setShowBanner } = useContext(TaskContext);
 
   const handleCheckboxChange = async (task) => {
@@ -47,10 +47,10 @@ const Checkbox = ({ task }) => {
   };
 
   return (
-    <CheckboxContainer>
+    <CheckboxContainer data-cy={`task-checkbox-${index}`}>
       {task.status === "completed" ? (
         <CustomCheckboxChecked onClick={() => handleCheckboxChange(task)}>
-          <Check>✓</Check>
+          <Check data-cy="task-checkbox-completed-check">✓</Check>
         </CustomCheckboxChecked>
       ) : (
         <CustomCheckbox

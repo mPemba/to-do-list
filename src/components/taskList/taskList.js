@@ -30,17 +30,19 @@ const TaskList = () => {
       )}
       <Tasks>
         {tasksToDisplay &&
-          tasksToDisplay.map((task) => {
+          tasksToDisplay.map((task, index) => {
             if (editTask.show === true && editTask.task.id === task.id) {
               return <EditTaskForm key={task.id} taskToBeUpdated={task} />;
             } else {
               return (
-                <Task key={task.id}>
-                  <Checkbox task={task} />
+                <Task data-cy={`task-container-${index}`} key={task.id}>
+                  <Checkbox task={task} index={index} />
                   <TaskDetails>
-                    <Title>{task.title}</Title>
+                    <Title data-cy={`task-title-${index}`}>{task.title}</Title>
                     {task.description && task.description !== "" && (
-                      <Description>{task.description}</Description>
+                      <Description data-cy={`task-description-${index}`}>
+                        {task.description}
+                      </Description>
                     )}
                   </TaskDetails>
                   <TaskMenu task={task} />

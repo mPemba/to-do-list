@@ -16,10 +16,17 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.10"
+    "@babel/core": "^7.22.1",
+    "@babel/eslint-parser": "^7.21.8",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
+    "cypress": "^12.13.0",
+    "eslint": "^8.42.0",
+    "eslint-plugin-cypress": "^2.13.3"
   },
   "eslintConfig": {
     "extends": [
