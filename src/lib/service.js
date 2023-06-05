@@ -65,4 +65,26 @@ const updateTask = async ({ id, title, description, status }) => {
   }
 };
 
-export { fetchTasks, createTask, updateTask };
+const deleteTask = async ({ id }) => {
+  try {
+    const response = await fetch(`http://localhost:5000/deleteTask/${id}`, {
+      method: "DELETE",
+    });
+
+    console.log("service response => ", response);
+
+    if (response.ok) {
+      const taskData = await response.json();
+
+      console.log("service taskData => ", taskData);
+
+      return taskData;
+    } else {
+      console.error("Failed to delete task: ", response.status);
+    }
+  } catch (error) {
+    console.error("Error deleting task: ", error);
+  }
+};
+
+export { fetchTasks, createTask, updateTask, deleteTask };

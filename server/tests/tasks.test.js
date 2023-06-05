@@ -36,6 +36,7 @@ jest.mock("../src/db.js", () => ({
       set: jest.fn(),
       doc: jest.fn().mockReturnThis(),
       update: jest.fn(),
+      delete: jest.fn(),
     }),
   },
 }));
@@ -131,6 +132,20 @@ describe("Tasks API", () => {
         status: taskData.status,
         updatedAt: mockTimestamp,
       },
+    });
+  });
+
+  // Test the DELETE /api/deleteTask/:id endpoint
+  it("should delete a task", async () => {
+    const mockUUID = "task1";
+
+    // Make request
+    const response = await request(app).delete(`/api/deleteTask/${mockUUID}`);
+
+    // Verify response
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({
+      success: true,
     });
   });
 });

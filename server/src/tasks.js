@@ -79,4 +79,19 @@ router.put("/updateTask/:id", async (req, res) => {
   }
 });
 
+// Delete a task
+router.delete("/deleteTask/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Delete the task from Firestore
+    await firestore.collection("tasks").doc(id).delete();
+
+    res.status(200).json({ success: true });
+  } catch (error) {
+    console.error("Error deleting task:", error);
+    res.status(500).json({ success: false, error: "Failed to delete task" });
+  }
+});
+
 module.exports = router;
