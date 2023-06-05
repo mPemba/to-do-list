@@ -63,18 +63,17 @@ const Checkbox = ({ task }) => {
 
 const CheckboxContainer = styled.div`
   width: 50px;
-  height: 50px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 1rem;
 `;
 
 const CustomCheckbox = styled.div`
-  width: 25px;
-  height: 25px;
-  border: 2px solid ${colors.white};
-  background-color: ${colors.darkBlue};
+  width: 20px;
+  height: 20px;
+  border: 2px solid ${colors.darkBlue};
+  background-color: ${colors.white};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -19,6 +19,13 @@ const TaskList = () => {
 
   return (
     <TasksContainer>
+      {/* TODO - style this message */}
+      {tasksToDisplay.length === 0 && (
+        <div>
+          <h2>Nothing to do!</h2>
+          <p>Click the button below to add a new task.</p>
+        </div>
+      )}
       <Tasks>
         {tasksToDisplay &&
           tasksToDisplay.map((task) => (
@@ -41,7 +48,6 @@ const TaskList = () => {
 
 const TasksContainer = styled.div`
   width: 100%;
-  height: calc(100% - 180px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,21 +56,20 @@ const TasksContainer = styled.div`
 `;
 
 const Tasks = styled.div`
-  width: 50%;
-  height: 100%;
+  width: 65%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1rem;
-  padding: 2rem 0;
+  padding: 35px 0px 50px 0px;
   transition: width 0.8s ease-in-out;
 
   @media (max-width: 1024px) {
-    width: 70%;
+    width: 85%;
   }
 
   @media (max-width: 768px) {
-    width: 80%;
+    width: 95%;
   }
 
   @media (max-width: 425px) {
@@ -78,17 +83,13 @@ const Task = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-color: ${colors.darkBlue};
-  border: 2px solid ${colors.blue};
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 6px 10px ${colors.lightGray};
+  border-bottom: 1px solid ${colors.lightBlue};
+  padding: 10px 0;
 `;
 
 const TaskDetails = styled.div`
   width: 100%;
-  height: 84%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -97,13 +98,13 @@ const TaskDetails = styled.div`
 
 const Title = styled.div`
   font-weight: bold;
-  color: ${colors.white};
-  margin-bottom: 0.5rem;
+  margin-bottom: 3px;
+  color: ${colors.darkBlue};
 `;
 
 const Description = styled.div`
   font-size: 1rem;
-  color: ${colors.lightBlue};
+  color: ${colors.blue};
 `;
 
 export { TaskList };

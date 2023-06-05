@@ -4,39 +4,37 @@ import { TaskContext } from "../lib/TaskContext";
 import { colors } from "../lib/colors";
 
 const Footer = () => {
-  const { tasks, setShowTaskForm } = useContext(TaskContext);
+  const { showTaskForm, setShowTaskForm, showCompleted } =
+    useContext(TaskContext);
 
   return (
-    <FooterContainer>
-      <FooterContent>
-        {tasks.length} Task{tasks.length !== 1 && "s"}
-      </FooterContent>
-      <AddTask onClick={() => setShowTaskForm(true)}>Add New Task +</AddTask>
+    <FooterContainer showTaskForm={showTaskForm}>
+      {!showTaskForm && !showCompleted && (
+        <AddTask onClick={() => setShowTaskForm(true)}>Add New Task +</AddTask>
+      )}
     </FooterContainer>
   );
 };
 
 const FooterContainer = styled.div`
-  width: 100%;
-  height: 80px;
-  background-color: ${colors.darkBlue};
+  width: ${(props) => (props.showTaskForm ? "0" : "100%")};
+  height: fit-content;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-top: 2px solid ${colors.blue};
-  padding: 0 2rem;
+  justify-content: flex-end;
+  padding: 0px 20px 20px 0px;
   position: fixed;
   bottom: 0;
 `;
 
-const FooterContent = styled.div`
+const AddTask = styled.div`
   width: fit-content;
   height: fit-content;
   font-size: 1rem;
   color: ${colors.white};
-`;
-
-const AddTask = styled(FooterContent)`
+  background-color: ${colors.blue};
+  padding: 10px 20px;
+  border-radius: 0.5rem;
   cursor: pointer;
 `;
 

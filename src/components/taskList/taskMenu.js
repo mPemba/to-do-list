@@ -35,7 +35,9 @@ const TaskMenu = ({ task }) => {
 
   return (
     <MenuContainer>
-      <Icon src={MenuIcon} alt="Menu" onClick={() => toggleMenu(task.id)} />
+      {!showMenu.show && (
+        <Icon src={MenuIcon} alt="Menu" onClick={() => toggleMenu(task.id)} />
+      )}
       {showMenu.show && showMenu.id === task.id && (
         <Menu>
           <Delete onClick={() => deleteItem(task.id)}>delete</Delete>
@@ -48,11 +50,11 @@ const TaskMenu = ({ task }) => {
 };
 
 const MenuContainer = styled.div`
-  width: fit-content;
+  width: 170px;
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 const Icon = styled.img`
@@ -62,13 +64,11 @@ const Icon = styled.img`
 `;
 
 const Menu = styled.div`
-  width: 38px;
-  height: 50px;
+  width: fit-content;
+  height: fit-content;
   transition: width 1s ease-in-out;
-  background-color: ${colors.darkBlue};
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  gap: 20px;
 `;
 
 const Item = styled.span`
@@ -76,7 +76,7 @@ const Item = styled.span`
   transition: width 1s ease-in-out;
   height: fit-content;
   cursor: pointer;
-  color: ${colors.white};
+  color: ${colors.gray};
 `;
 
 const Delete = styled(Item)`
@@ -84,7 +84,7 @@ const Delete = styled(Item)`
 `;
 
 const Edit = styled(Item)`
-  color: ${colors.mint};
+  color: ${colors.blue};
 `;
 
 export { TaskMenu };

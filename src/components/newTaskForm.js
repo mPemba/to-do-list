@@ -101,7 +101,7 @@ const NewTaskFormContainer = styled.div`
   border: 2px solid ${colors.blue};
   border-radius: 0.5rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   color: ${colors.white};
   gap: 0.5rem;
 `;
