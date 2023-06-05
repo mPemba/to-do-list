@@ -3,8 +3,8 @@ const fetchTasks = async () => {
     const response = await fetch("http://localhost:5000/tasks");
 
     if (response.ok) {
-      const tasksData = await response.json();
-      return tasksData;
+      const data = await response.json();
+      return data;
     } else {
       console.error("Failed to fetch tasks: ", response.status);
     }
@@ -29,8 +29,8 @@ const createTask = async ({ title, description }) => {
       });
 
       if (response.ok) {
-        const taskData = await response.json();
-        return taskData;
+        const data = await response.json();
+        return data;
       } else {
         console.error("Failed to create task: ", response.status);
       }
@@ -55,8 +55,8 @@ const updateTask = async ({ id, title, description, status }) => {
     });
 
     if (response.ok) {
-      const taskData = await response.json();
-      return taskData;
+      const data = await response.json();
+      return data;
     } else {
       console.error("Failed to update task: ", response.status);
     }
@@ -71,14 +71,9 @@ const deleteTask = async ({ id }) => {
       method: "DELETE",
     });
 
-    console.log("service response => ", response);
-
     if (response.ok) {
-      const taskData = await response.json();
-
-      console.log("service taskData => ", taskData);
-
-      return taskData;
+      const data = await response.json();
+      return data;
     } else {
       console.error("Failed to delete task: ", response.status);
     }

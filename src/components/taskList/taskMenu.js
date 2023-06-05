@@ -6,7 +6,7 @@ import { deleteTask } from "../../lib/service";
 import MenuIcon from "../../lib/icons/menu-vertical.svg";
 
 const TaskMenu = ({ task }) => {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { tasks, setTasks, setShowBanner } = useContext(TaskContext);
 
   const [showMenu, setShowMenu] = useState({
     show: false,
@@ -25,7 +25,11 @@ const TaskMenu = ({ task }) => {
     const response = await deleteTask({ id });
     if (response) {
       setTasks(tasks.filter((task) => task.id !== id));
-      // show banner
+      setShowBanner({
+        show: true,
+        message: "Task Deleted Successfully",
+        type: "success",
+      });
     }
   };
 

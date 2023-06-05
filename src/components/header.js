@@ -35,7 +35,7 @@ const Header = () => {
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 11%;
+  height: 100px;
   background-color: ${colors.darkBlue};
   display: flex;
   flex-direction: column;

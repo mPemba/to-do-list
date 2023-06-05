@@ -5,7 +5,7 @@ import { TaskContext } from "../../lib/TaskContext";
 import { updateTask } from "../../lib/service";
 
 const Checkbox = ({ task }) => {
-  const { tasks, setTasks } = useContext(TaskContext);
+  const { tasks, setTasks, setShowBanner } = useContext(TaskContext);
 
   const handleCheckboxChange = async (task) => {
     // update the task status
@@ -30,8 +30,20 @@ const Checkbox = ({ task }) => {
 
     // TODO update the task in the database after 3 seconds
     const response = await updateTask(task);
-    console.log(response);
-    // show banners! (success and error)
+
+    if (response) {
+      setShowBanner({
+        show: true,
+        message: "Task Updated Successfully",
+        type: "success",
+      });
+    } else {
+      setShowBanner({
+        show: true,
+        message: "Task Update Failed",
+        type: "error",
+      });
+    }
   };
 
   return (

@@ -5,9 +5,10 @@ import { Footer } from "./components/footer";
 import { fetchTasks } from "./lib/service";
 import { Header } from "./components/header";
 import { TaskList } from "./components/taskList/taskList";
+import { Banner } from "./components/banner";
 
 function App() {
-  const { setTasks } = useContext(TaskContext);
+  const { setTasks, showBanner } = useContext(TaskContext);
 
   // get data from node server
   useEffect(() => {
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <Main>
+      {showBanner.show && <Banner />}
       <Header />
       <TaskList />
       <Footer />

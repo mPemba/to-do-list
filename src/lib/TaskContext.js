@@ -10,6 +10,11 @@ export const TaskProvider = ({ children }) => {
   const [showTaskForm, setShowTaskForm] = useState(false);
   const [errorState, setErrorState] = useState(false);
   const [showCompleted, setShowCompleted] = useState(false);
+  const [showBanner, setShowBanner] = useState({
+    show: false,
+    message: "",
+    type: "",
+  });
 
   // Make the context object
   const contextValue = {
@@ -21,6 +26,8 @@ export const TaskProvider = ({ children }) => {
     setErrorState,
     showCompleted,
     setShowCompleted,
+    showBanner,
+    setShowBanner,
   };
 
   // Return the TaskProvider component with the context value

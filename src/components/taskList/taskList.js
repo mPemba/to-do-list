@@ -41,7 +41,7 @@ const TaskList = () => {
 
 const TasksContainer = styled.div`
   width: 100%;
-  height: 80%;
+  height: calc(100% - 180px);
   display: flex;
   flex-direction: column;
   align-items: center;
