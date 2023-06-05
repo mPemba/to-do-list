@@ -5,7 +5,7 @@ import { TaskContext } from "../../lib/TaskContext";
 import { deleteTask } from "../../lib/service";
 import MenuIcon from "../../lib/icons/menu-vertical.svg";
 
-const TaskMenu = ({ task }) => {
+const TaskMenu = ({ task, index }) => {
   const { tasks, setTasks, setShowBanner, setEditTask } =
     useContext(TaskContext);
 
@@ -31,6 +31,12 @@ const TaskMenu = ({ task }) => {
         message: "Task Deleted Successfully",
         type: "success",
       });
+    } else {
+      setShowBanner({
+        show: true,
+        message: "Task Deletion Failed",
+        type: "error",
+      });
     }
   };
 
@@ -44,13 +50,33 @@ const TaskMenu = ({ task }) => {
   return (
     <MenuContainer>
       {!showMenu.show && (
-        <Icon src={MenuIcon} alt="Menu" onClick={() => toggleMenu(task.id)} />
+        <Icon
+          data-cy={`task-menu-icon-${index}`}
+          src={MenuIcon}
+          alt="Menu"
+          onClick={() => toggleMenu(task.id)}
+        />
       )}
       {showMenu.show && showMenu.id === task.id && (
         <Menu>
-          <Delete onClick={() => deleteItem(task.id)}>delete</Delete>
-          <Edit onClick={() => editItem(task)}>edit</Edit>
-          <Item onClick={() => toggleMenu(task.id)}>cancel</Item>
+          <Delete
+            data-cy={`task-menu-delete-button-${index}`}
+            onClick={() => deleteItem(task.id)}
+          >
+            delete
+          </Delete>
+          <Edit
+            data-cy={`task-menu-edit-button-${index}`}
+            onClick={() => editItem(task)}
+          >
+            edit
+          </Edit>
+          <Item
+            data-cy={`task-menu-cancel-button-${index}`}
+            onClick={() => toggleMenu(task.id)}
+          >
+            cancel
+          </Item>
         </Menu>
       )}
     </MenuContainer>

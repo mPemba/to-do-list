@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "task": {
+    "id": "a6837732-bc4e-4d76-b8c6-03446e836463",
+    "title": "New Task Title",
+    "status": "active",
+    "description": "New Task Description",
+    "createdAt": 1685998632208,
+    "updatedAt": 1685998632208
+  }
+}

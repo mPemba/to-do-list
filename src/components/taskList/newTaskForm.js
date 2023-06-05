@@ -60,14 +60,16 @@ const NewTaskForm = () => {
   };
 
   return (
-    <NewTaskFormContainer>
+    <NewTaskFormContainer data-cy="new-task-form-container">
       <FormHeader>
         <Heading>New Task</Heading>
         <IconContainer onClick={() => setShowTaskForm(false)}>
           <CloseIcon src={Close} alt="Close Form" />
         </IconContainer>
       </FormHeader>
-      {errorState && <Error>Title is required</Error>}
+      {errorState && (
+        <Error data-cy="new-task-form-error-message">Title is required</Error>
+      )}
       <div>Title</div>
       <TextInput
         type="text"
@@ -76,6 +78,7 @@ const NewTaskForm = () => {
         value={title}
         onChange={handleTitleChange}
         errorState={errorState}
+        data-cy="new-task-form-title-input"
       />
       <div>Description</div>
       <TextInput
@@ -84,8 +87,14 @@ const NewTaskForm = () => {
         placeholder="Add a description"
         value={description}
         onChange={handleDescriptionChange}
+        data-cy="new-task-form-description-input"
       />
-      <CreateButton onClick={() => createNewTask()}>Create Task</CreateButton>
+      <CreateButton
+        data-cy="new-task-form-create-button"
+        onClick={() => createNewTask()}
+      >
+        Create Task
+      </CreateButton>
     </NewTaskFormContainer>
   );
 };

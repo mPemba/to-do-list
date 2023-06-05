@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "task": {
+    "title": "New Title",
+    "description": "New Description",
+    "status": "active",
+    "updatedAt": 1685999795821
+  }
+}

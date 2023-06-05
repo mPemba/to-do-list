@@ -13,37 +13,51 @@ const TaskList = () => {
     useContext(TaskContext);
 
   // filter the tasks based on the showCompleted state
-  if (showCompleted === false) {
-    tasksToDisplay = tasks.filter((task) => task.status === "active");
-  } else {
-    tasksToDisplay = tasks.filter((task) => task.status === "completed");
+  if (tasks && tasks.length > 0) {
+    if (showCompleted === false) {
+      tasksToDisplay = tasks.filter((task) => task.status === "active");
+    } else {
+      tasksToDisplay = tasks.filter((task) => task.status === "completed");
+    }
   }
 
   return (
     <TasksContainer>
-      {/* TODO - style this message */}
-      {tasksToDisplay.length === 0 && (
-        <div>
+      {tasksToDisplay.length === 0 && showCompleted === false && (
+        <EmptyState>
           <h2>Nothing to do!</h2>
           <p>Click the button below to add a new task.</p>
-        </div>
+        </EmptyState>
       )}
       <Tasks>
         {tasksToDisplay &&
-          tasksToDisplay.map((task) => {
+          tasksToDisplay.map((task, index) => {
             if (editTask.show === true && editTask.task.id === task.id) {
-              return <EditTaskForm key={task.id} taskToBeUpdated={task} />;
+              return (
+                <EditTaskForm
+                  key={task.id}
+                  taskToBeUpdated={task}
+                  index={index}
+                />
+              );
             } else {
               return (
-                <Task key={task.id}>
-                  <Checkbox task={task} />
+                <Task data-cy={`task-container-${index}`} key={task.id}>
+                  <Checkbox task={task} index={index} />
                   <TaskDetails>
-                    <Title>{task.title}</Title>
+                    <Title data-cy={`task-title-${index}`}>{task.title}</Title>
                     {task.description && task.description !== "" && (
-                      <Description>{task.description}</Description>
+                      <Description data-cy={`task-description-${index}`}>
+                        {task.description}
+                      </Description>
+                    )}
+                    {task.createdAt && (
+                      <CreatedAt>
+                        {new Date(task.createdAt).toLocaleDateString()}
+                      </CreatedAt>
                     )}
                   </TaskDetails>
-                  <TaskMenu task={task} />
+                  <TaskMenu task={task} index={index} />
                 </Task>
               );
             }
@@ -113,6 +127,25 @@ const Title = styled.div`
 const Description = styled.div`
   font-size: 1rem;
   color: ${colors.blue};
+`;
+
+const EmptyState = styled.div`
+  width: 65%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 0px 50px 0px;
+  transition: width 0.8s ease-in-out;
+  color: ${colors.darkBlue};
+  gap: 1rem;
+`;
+
+const CreatedAt = styled.span`
+  font-size: 12px;
+  color: ${colors.blue};
+  margin-top: 3px;
 `;
 
 export { TaskList };

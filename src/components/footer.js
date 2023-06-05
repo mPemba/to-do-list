@@ -10,7 +10,12 @@ const Footer = () => {
   return (
     <FooterContainer showTaskForm={showTaskForm}>
       {!showTaskForm && !showCompleted && (
-        <AddTask onClick={() => setShowTaskForm(true)}>Add New Task +</AddTask>
+        <AddTask
+          data-cy="create-new-task-button"
+          onClick={() => setShowTaskForm(true)}
+        >
+          Add New Task +
+        </AddTask>
       )}
     </FooterContainer>
   );
