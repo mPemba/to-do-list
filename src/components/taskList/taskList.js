@@ -24,11 +24,11 @@ const TaskList = () => {
   return (
     <TasksContainer>
       {/* TODO - style this message */}
-      {tasksToDisplay.length === 0 && (
-        <div>
+      {tasksToDisplay.length === 0 && showCompleted === false && (
+        <EmptyState>
           <h2>Nothing to do!</h2>
           <p>Click the button below to add a new task.</p>
-        </div>
+        </EmptyState>
       )}
       <Tasks>
         {tasksToDisplay &&
@@ -123,6 +123,19 @@ const Title = styled.div`
 const Description = styled.div`
   font-size: 1rem;
   color: ${colors.blue};
+`;
+
+const EmptyState = styled.div`
+  width: 65%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 35px 0px 50px 0px;
+  transition: width 0.8s ease-in-out;
+  color: ${colors.darkBlue};
+  gap: 1rem;
 `;
 
 export { TaskList };
