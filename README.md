@@ -1,9 +1,13 @@
-# To Do List
+# To Do List App
 
 This is a simple To-Do List application. You can add items,
 mark them as complete, update their titles/descriptions and delete them.
 
-> Built with React, Node, and a Firestore DB
+> Built with React, Node, and a Firestore DB 😎
+
+You will find the Node server, endpoints and DB connection in `/server/src/`.
+
+The React components are in `/src/components/` and the other frontend functionality is in `/src/lib/`.
 
 ## Get Started
 
