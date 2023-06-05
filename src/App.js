@@ -4,7 +4,7 @@ import { TaskContext } from "./lib/TaskContext";
 import { Footer } from "./components/footer";
 import { fetchTasks } from "./lib/service";
 import { Header } from "./components/header";
-import { TaskList } from "./components/taskList";
+import { TaskList } from "./components/taskList/taskList";
 
 function App() {
   const { setTasks } = useContext(TaskContext);
