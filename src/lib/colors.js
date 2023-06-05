@@ -8,6 +8,7 @@ const colors = {
   lightBlue: "#BCCBDC",
   mint: "#CBF7ED",
   red: "#931621",
+  green: "#3F784C",
 };
 
 export { colors };

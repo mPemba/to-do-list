@@ -11,9 +11,7 @@ const Footer = () => {
       <FooterContent>
         {tasks.length} Task{tasks.length !== 1 && "s"}
       </FooterContent>
-      <FooterContent onClick={() => setShowTaskForm(true)}>
-        Add New Task +
-      </FooterContent>
+      <AddTask onClick={() => setShowTaskForm(true)}>Add New Task +</AddTask>
     </FooterContainer>
   );
 };
@@ -36,6 +34,9 @@ const FooterContent = styled.div`
   height: fit-content;
   font-size: 1rem;
   color: ${colors.white};
+`;
+
+const AddTask = styled(FooterContent)`
   cursor: pointer;
 `;
 

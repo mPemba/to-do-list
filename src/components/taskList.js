@@ -4,13 +4,14 @@ import { TaskContext } from "../lib/TaskContext";
 import { NewTaskForm } from "./newTaskForm";
 import { colors } from "../lib/colors";
 import { updateTask } from "../lib/service";
+import MenuIcon from "../lib/icons/menu-vertical.svg";
 
 const TaskList = () => {
   let tasksToDisplay = [];
   const { tasks, showTaskForm, setTasks, showCompleted } =
     useContext(TaskContext);
 
-  const handleCheckboxChange = (task) => {
+  const handleCheckboxChange = async (task) => {
     console.log(task);
 
     // update the task status
@@ -34,7 +35,7 @@ const TaskList = () => {
     );
 
     // update the task in the database
-    const response = updateTask(task);
+    const response = await updateTask(task);
     console.log(response);
   };
 
@@ -66,8 +67,13 @@ const TaskList = () => {
               </CheckboxContainer>
               <TaskDetails>
                 <Title>{task.title}</Title>
-                <Description>{task.description}</Description>
+                {task.description && task.description !== "" && (
+                  <Description>{task.description}</Description>
+                )}
               </TaskDetails>
+              <MenuContainer>
+                <Icon src={MenuIcon} alt="Menu" />
+              </MenuContainer>
             </Task>
           ))}
         {showTaskForm && <NewTaskForm />}
@@ -83,17 +89,32 @@ const TasksContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: scroll;
 `;
 
+// animate width on width change
 const Tasks = styled.div`
-  width: 70%;
+  width: 50%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  overflow-y: scroll;
+
   gap: 1rem;
-  padding-top: 1rem;
+  padding-top: 2rem;
+  transition: width 0.8s ease-in-out;
+
+  @media (max-width: 1024px) {
+    width: 70%;
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
+
+  @media (max-width: 425px) {
+    width: 100%;
+  }
 `;
 
 const Task = styled.div`
@@ -115,6 +136,8 @@ const TaskDetails = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const Title = styled.div`
@@ -156,6 +179,20 @@ const CustomCheckboxChecked = styled(CustomCheckbox)`
 const Check = styled.span`
   color: ${colors.white};
   font-size: 1rem;
+`;
+
+const MenuContainer = styled.div`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Icon = styled.img`
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
 `;
 
 export { TaskList };

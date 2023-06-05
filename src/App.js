@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
 import { TaskContext } from "./lib/TaskContext";
 import { Footer } from "./components/footer";
@@ -7,7 +7,7 @@ import { Header } from "./components/header";
 import { TaskList } from "./components/taskList";
 
 function App() {
-  const { setTasks } = React.useContext(TaskContext);
+  const { setTasks } = useContext(TaskContext);
 
   // get data from node server
   useEffect(() => {

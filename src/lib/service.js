@@ -27,11 +27,10 @@ const createTask = async ({ title, description }) => {
           status: "active",
         }),
       });
+
       if (response.ok) {
         const taskData = await response.json();
         return taskData;
-        // setTasks([...tasks, taskData.task]);
-        // clearForm();
       } else {
         console.error("Failed to create task: ", response.status);
       }
@@ -54,6 +53,7 @@ const updateTask = async ({ id, title, description, status }) => {
         status: status,
       }),
     });
+
     if (response.ok) {
       const taskData = await response.json();
       return taskData;

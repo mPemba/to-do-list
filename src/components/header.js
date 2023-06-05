@@ -6,8 +6,6 @@ import { TaskContext } from "../lib/TaskContext";
 const Header = () => {
   const { showCompleted, setShowCompleted } = useContext(TaskContext);
 
-  console.log("showCompleted => ", showCompleted);
-
   return (
     <HeaderContainer>
       <Heading>To Do List</Heading>
