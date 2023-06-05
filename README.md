@@ -3,6 +3,8 @@
 This is a simple To-Do List application. You can add items,
 mark them as complete, update their titles and delete them.
 
+> Built with React, Node, and a Firestore DB
+
 ## How to start
 
 - Generate a Firestore privite key via [these instructions](https://firebase.google.com/docs/firestore/quickstart#initialize) in the "Initialize on your own server" section. Keep your file in a safe place.
