@@ -1,19 +1,19 @@
 # To Do List
 
 This is a simple To-Do List application. You can add items,
-mark them as complete, update their titles and delete them.
+mark them as complete, update their titles/descriptions and delete them.
 
 > Built with React, Node, and a Firestore DB
 
-## How to start
+## Get Started
 
-- Generate a Firestore privite key via [these instructions](https://firebase.google.com/docs/firestore/quickstart#initialize) in the "Initialize on your own server" section. Keep your file in a safe place.
+- First, generate a Firestore private key file via [these instructions](https://firebase.google.com/docs/firestore/quickstart#initialize) in the "Initialize on your own server" section. Keep your file in a safe place.
 - Create a directory `/server/secret`. This will be ignored by Github.
 - Add a copy of your Firestore config file to the folder
-- Create a `.env` file and add the path to the config file:
+- Create a `.env` file in the `/server` directory and add the path to the config file like this:
 
 ```
-env code here
+FIRESTORE_CONFIG_PATH=../secret/{yourConfigFileHere}.json
 ```
 
 ## Start the server

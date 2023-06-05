@@ -9,8 +9,10 @@ const {
   FieldValue,
   Filter,
 } = require("firebase-admin/firestore");
+require("dotenv").config();
 
-const serviceAccount = require("../secret/to-do-list-c4cf0-firebase-adminsdk-8c2gk-253309cdae.json");
+const config = process.env.FIRESTORE_CONFIG_PATH;
+const serviceAccount = require(config);
 
 initializeApp({
   credential: cert(serviceAccount),
