@@ -18,7 +18,7 @@ const Footer = () => {
 
 const FooterContainer = styled.div`
   width: 100%;
-  height: 80px;
+  height: 65px;
   background-color: ${colors.darkBlue};
   display: flex;
   align-items: center;
