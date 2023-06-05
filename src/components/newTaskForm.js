@@ -8,8 +8,14 @@ import Close from "../lib/icons/close.svg";
 const NewTaskForm = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const { tasks, setTasks, setShowTaskForm, errorState, setErrorState } =
-    useContext(TaskContext);
+  const {
+    tasks,
+    setTasks,
+    setShowTaskForm,
+    errorState,
+    setErrorState,
+    setShowBanner,
+  } = useContext(TaskContext);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -20,20 +26,34 @@ const NewTaskForm = () => {
   };
 
   const createNewTask = async () => {
+    // if title is empty, show error state
     if (!title) {
       setErrorState(true);
       return;
     }
+
+    // create the task
     const response = await createTask({ title, description });
 
+    // if task is created successfully, update the state
     if (response) {
-      console.log({ response });
       const newTask = response.task;
       setErrorState(false);
       setTasks([...tasks, newTask]);
+      setShowBanner({
+        show: true,
+        message: "Task Created Successfully",
+        type: "success",
+      });
     } else {
-      console.log("error banner here");
+      setShowBanner({
+        show: true,
+        message: "Task Creation Failed",
+        type: "error",
+      });
     }
+
+    // reset the form
     setTitle("");
     setDescription("");
     setShowTaskForm(false);
