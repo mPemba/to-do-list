@@ -4,7 +4,7 @@ import { colors } from "../lib/colors";
 import { TaskContext } from "../lib/TaskContext";
 
 const Header = () => {
-  const { showCompleted, setShowCompleted, setShowTaskForm } =
+  const { tasks, showCompleted, setShowCompleted, setShowTaskForm } =
     useContext(TaskContext);
 
   const handleClick = (show) => {
@@ -14,7 +14,14 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-      <Heading>To Do List</Heading>
+      <span>
+        <Heading>To Do List</Heading>
+        {tasks.length > 0 && (
+          <Count>
+            {tasks.length} Task{tasks.length !== 1 && "s"}
+          </Count>
+        )}
+      </span>
       <Switcher>
         <DisplaySwitch
           highlight={showCompleted === false ? true : false}
@@ -35,12 +42,12 @@ const Header = () => {
 
 const HeaderContainer = styled.div`
   width: 100%;
-  height: 100px;
+  height: fit-content;
   background-color: ${colors.darkBlue};
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 1rem;
   border-bottom: 2px solid ${colors.blue};
 `;
 
@@ -53,7 +60,6 @@ const Switcher = styled.div`
   height: fit-content;
   display: flex;
   gap: 1rem;
-  margin-top: 1rem;
   color: ${colors.white};
 `;
 
@@ -64,6 +70,13 @@ const DisplaySwitch = styled.div`
   cursor: pointer;
   border-bottom: ${(props) =>
     props.highlight ? `2px solid ${colors.white}` : "none"};
+`;
+
+const Count = styled.div`
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+  color: ${colors.white};
 `;
 
 export { Header };

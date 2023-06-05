@@ -50,11 +50,11 @@ const TaskMenu = ({ task }) => {
 };
 
 const MenuContainer = styled.div`
-  width: fit-content;
+  width: 170px;
   height: 50px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 `;
 
 const Icon = styled.img`

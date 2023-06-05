@@ -19,6 +19,13 @@ const TaskList = () => {
 
   return (
     <TasksContainer>
+      {/* TODO - style this message */}
+      {tasksToDisplay.length === 0 && (
+        <div>
+          <h2>Nothing to do!</h2>
+          <p>Click the button below to add a new task.</p>
+        </div>
+      )}
       <Tasks>
         {tasksToDisplay &&
           tasksToDisplay.map((task) => (
@@ -41,7 +48,6 @@ const TaskList = () => {
 
 const TasksContainer = styled.div`
   width: 100%;
-  height: calc(100% - 180px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -51,11 +57,11 @@ const TasksContainer = styled.div`
 
 const Tasks = styled.div`
   width: 65%;
-  height: 100%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 2rem 0;
+  padding: 35px 0px 50px 0px;
   transition: width 0.8s ease-in-out;
 
   @media (max-width: 1024px) {
