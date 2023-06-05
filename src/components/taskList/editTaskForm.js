@@ -5,7 +5,7 @@ import { colors } from "../../lib/colors";
 import Close from "../../lib/icons/close.svg";
 import { updateTask } from "../../lib/service";
 
-const EditTaskForm = ({ taskToBeUpdated }) => {
+const EditTaskForm = ({ taskToBeUpdated, index }) => {
   const {
     errorState,
     setErrorState,
@@ -78,7 +78,10 @@ const EditTaskForm = ({ taskToBeUpdated }) => {
   };
 
   return (
-    <EditMenuContainer key={taskToBeUpdated.id}>
+    <EditMenuContainer
+      data-cy={`edit-menu-container-${index}`}
+      key={taskToBeUpdated.id}
+    >
       <FormHeader>
         <Heading>Edit Task</Heading>
         <IconContainer
@@ -89,7 +92,11 @@ const EditTaskForm = ({ taskToBeUpdated }) => {
             })
           }
         >
-          <CloseIcon src={Close} alt="Close Form" />
+          <CloseIcon
+            src={Close}
+            alt="Close Form"
+            data-cy={`edit-menu-close-button-${index}`}
+          />
         </IconContainer>
       </FormHeader>
       <Details>
@@ -100,6 +107,7 @@ const EditTaskForm = ({ taskToBeUpdated }) => {
           value={newTitle}
           onChange={handleTitleChange}
           errorState={errorState}
+          data-cy={`edit-menu-title-input-${index}`}
         />
         {taskToBeUpdated.description && taskToBeUpdated.description !== "" && (
           <>
@@ -110,11 +118,15 @@ const EditTaskForm = ({ taskToBeUpdated }) => {
               value={newDescription}
               onChange={handleDescriptionChange}
               errorState={errorState}
+              data-cy={`edit-menu-description-input-${index}`}
             />
           </>
         )}
       </Details>
-      <UpdateButton onClick={() => updateCurrentTask()}>
+      <UpdateButton
+        onClick={() => updateCurrentTask()}
+        data-cy={`edit-menu-update-button-${index}`}
+      >
         Update Task
       </UpdateButton>
     </EditMenuContainer>

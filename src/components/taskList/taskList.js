@@ -13,10 +13,12 @@ const TaskList = () => {
     useContext(TaskContext);
 
   // filter the tasks based on the showCompleted state
-  if (showCompleted === false) {
-    tasksToDisplay = tasks.filter((task) => task.status === "active");
-  } else {
-    tasksToDisplay = tasks.filter((task) => task.status === "completed");
+  if (tasks && tasks.length > 0) {
+    if (showCompleted === false) {
+      tasksToDisplay = tasks.filter((task) => task.status === "active");
+    } else {
+      tasksToDisplay = tasks.filter((task) => task.status === "completed");
+    }
   }
 
   return (
@@ -32,7 +34,13 @@ const TaskList = () => {
         {tasksToDisplay &&
           tasksToDisplay.map((task, index) => {
             if (editTask.show === true && editTask.task.id === task.id) {
-              return <EditTaskForm key={task.id} taskToBeUpdated={task} />;
+              return (
+                <EditTaskForm
+                  key={task.id}
+                  taskToBeUpdated={task}
+                  index={index}
+                />
+              );
             } else {
               return (
                 <Task data-cy={`task-container-${index}`} key={task.id}>
@@ -45,7 +53,7 @@ const TaskList = () => {
                       </Description>
                     )}
                   </TaskDetails>
-                  <TaskMenu task={task} />
+                  <TaskMenu task={task} index={index} />
                 </Task>
               );
             }
