@@ -43,7 +43,12 @@ const Header = () => {
 const HeaderContainer = styled.div`
   width: 100%;
   height: fit-content;
-  background-color: ${colors.darkBlue};
+  background: linear-gradient(
+    90deg,
+    ${colors.darkBlue} 0%,
+    ${colors.darkBlue} 75%,
+    ${colors.blue} 100%
+  );
   display: flex;
   align-items: center;
   justify-content: space-between;

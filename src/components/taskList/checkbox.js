@@ -87,7 +87,7 @@ const CustomCheckboxChecked = styled(CustomCheckbox)`
 
 const Check = styled.span`
   color: ${colors.white};
-  font-size: 1rem;
+  font-size: 12px;
 `;
 
 export { Checkbox };

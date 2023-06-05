@@ -6,7 +6,8 @@ import { deleteTask } from "../../lib/service";
 import MenuIcon from "../../lib/icons/menu-vertical.svg";
 
 const TaskMenu = ({ task }) => {
-  const { tasks, setTasks, setShowBanner } = useContext(TaskContext);
+  const { tasks, setTasks, setShowBanner, setEditTask } =
+    useContext(TaskContext);
 
   const [showMenu, setShowMenu] = useState({
     show: false,
@@ -33,6 +34,13 @@ const TaskMenu = ({ task }) => {
     }
   };
 
+  const editItem = (task) => {
+    setEditTask({
+      show: true,
+      task: task,
+    });
+  };
+
   return (
     <MenuContainer>
       {!showMenu.show && (
@@ -41,7 +49,7 @@ const TaskMenu = ({ task }) => {
       {showMenu.show && showMenu.id === task.id && (
         <Menu>
           <Delete onClick={() => deleteItem(task.id)}>delete</Delete>
-          <Edit>edit</Edit>
+          <Edit onClick={() => editItem(task)}>edit</Edit>
           <Item onClick={() => toggleMenu(task.id)}>cancel</Item>
         </Menu>
       )}

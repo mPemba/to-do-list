@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { TaskContext } from "../../lib/TaskContext";
-import { NewTaskForm } from "../newTaskForm";
+import { NewTaskForm } from "./newTaskForm";
 import { colors } from "../../lib/colors";
 import { Checkbox } from "./checkbox";
 import { TaskMenu } from "./taskMenu";
+import { EditTaskForm } from "./editTaskForm";
 
 const TaskList = () => {
   let tasksToDisplay = [];
-  const { tasks, showTaskForm, showCompleted } = useContext(TaskContext);
+  const { tasks, showTaskForm, showCompleted, editTask } =
+    useContext(TaskContext);
 
   // filter the tasks based on the showCompleted state
   if (showCompleted === false) {
@@ -28,18 +30,24 @@ const TaskList = () => {
       )}
       <Tasks>
         {tasksToDisplay &&
-          tasksToDisplay.map((task) => (
-            <Task key={task.id}>
-              <Checkbox task={task} />
-              <TaskDetails>
-                <Title>{task.title}</Title>
-                {task.description && task.description !== "" && (
-                  <Description>{task.description}</Description>
-                )}
-              </TaskDetails>
-              <TaskMenu task={task} />
-            </Task>
-          ))}
+          tasksToDisplay.map((task) => {
+            if (editTask.show === true && editTask.task.id === task.id) {
+              return <EditTaskForm key={task.id} taskToBeUpdated={task} />;
+            } else {
+              return (
+                <Task key={task.id}>
+                  <Checkbox task={task} />
+                  <TaskDetails>
+                    <Title>{task.title}</Title>
+                    {task.description && task.description !== "" && (
+                      <Description>{task.description}</Description>
+                    )}
+                  </TaskDetails>
+                  <TaskMenu task={task} />
+                </Task>
+              );
+            }
+          })}
         {showTaskForm && <NewTaskForm />}
       </Tasks>
     </TasksContainer>

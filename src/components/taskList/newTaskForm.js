@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { TaskContext } from "../lib/TaskContext";
-import { createTask } from "../lib/service";
-import { colors } from "../lib/colors";
-import Close from "../lib/icons/close.svg";
+import { TaskContext } from "../../lib/TaskContext";
+import { createTask } from "../../lib/service";
+import { colors } from "../../lib/colors";
+import Close from "../../lib/icons/close.svg";
 
 const NewTaskForm = () => {
   const [title, setTitle] = useState("");
