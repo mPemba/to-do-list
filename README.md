@@ -36,4 +36,7 @@ FIRESTORE_CONFIG_PATH=../secret/{yourConfigFileHere}.json
 
 ## Test the React app
 
-- Cypress tests coming soon 😎
+- First start the app
+- Then open a new terminal window and navigate to the project
+- To run Cypress tests run: `yarn cy:run`
+- To open Cypress and watch the tests run use: `yarn cy:open`
