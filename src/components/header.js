@@ -4,7 +4,13 @@ import { colors } from "../lib/colors";
 import { TaskContext } from "../lib/TaskContext";
 
 const Header = () => {
-  const { showCompleted, setShowCompleted } = useContext(TaskContext);
+  const { showCompleted, setShowCompleted, setShowTaskForm } =
+    useContext(TaskContext);
+
+  const handleClick = (show) => {
+    setShowCompleted(show);
+    setShowTaskForm(false);
+  };
 
   return (
     <HeaderContainer>
@@ -12,13 +18,13 @@ const Header = () => {
       <Switcher>
         <DisplaySwitch
           highlight={showCompleted === false ? true : false}
-          onClick={() => setShowCompleted(false)}
+          onClick={() => handleClick(false)}
         >
           Active
         </DisplaySwitch>
         <DisplaySwitch
           highlight={showCompleted === true ? true : false}
-          onClick={() => setShowCompleted(true)}
+          onClick={() => handleClick(true)}
         >
           Completed
         </DisplaySwitch>

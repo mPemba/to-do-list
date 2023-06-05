@@ -47,6 +47,7 @@ const NewTaskForm = () => {
           <CloseIcon src={Close} alt="Close Form" />
         </IconContainer>
       </FormHeader>
+      {errorState && <Error>Title is required</Error>}
       <div>Title</div>
       <TextInput
         type="text"
@@ -64,7 +65,6 @@ const NewTaskForm = () => {
         value={description}
         onChange={handleDescriptionChange}
       />
-      {errorState && <Error>Title is required</Error>}
       <CreateButton onClick={() => createNewTask()}>Create Task</CreateButton>
     </NewTaskFormContainer>
   );
@@ -137,8 +137,10 @@ const CreateButton = styled.button`
   }
 `;
 
-const Error = styled.span`
+const Error = styled.div`
   color: ${colors.red};
+  font-size: 0.8rem;
+  font-weight: 600;
 `;
 
 export { NewTaskForm };

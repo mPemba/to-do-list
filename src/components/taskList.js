@@ -84,7 +84,7 @@ const TaskList = () => {
 
 const TasksContainer = styled.div`
   width: 100%;
-  height: 86%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -99,9 +99,8 @@ const Tasks = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
   gap: 1rem;
-  padding-top: 2rem;
+  padding: 2rem 0;
   transition: width 0.8s ease-in-out;
 
   @media (max-width: 1024px) {
